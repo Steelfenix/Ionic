@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ this.title }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="catalog"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input formControlName="Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input formControlName="Description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Price</ion-label>
+      <ion-input formControlName="Price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select
+        formControlName="CatalogTypeId"
+        interface="action-sheet"
+        placeholder="Select One"
+      >
+        <ion-select-option *ngFor="let type of types" [value]="type.id">
+          {{ type.type }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Brand</ion-label>
+      <ion-select
+        formControlName="CatalogBrandId"
+        interface="action-sheet"
+        placeholder="Select One"
+      >
+        <ion-select-option *ngFor="let brand of brands" [value]="brand.id">
+          {{ brand.brand }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button color="primary" expand="full" (click)="selectImage()">
+      <ion-icon slot="start" name="camera"></ion-icon>
+      Select Image
+    </ion-button>
+    <app-image-thumbnail
+      [img]="img"
+      (deleteImg)="deleteImage($event)"
+    ></app-image-thumbnail>
+    <ion-button
+      color="primary"
+      expand="full"
+      type="submit"
+      [disabled]="!form.valid"
+      >Save</ion-button
+    >
+  </form>
+</ion-content>

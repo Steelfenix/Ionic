@@ -1,0 +1,14 @@
+<ion-item *ngIf="show">
+  <ion-thumbnail slot="start">
+    <ion-img [src]="img.path"></ion-img>
+  </ion-thumbnail>
+
+  <ion-item>
+    <ion-label>{{ img.name }}</ion-label>
+    <ion-button slot="end" fill="clear" (click)="deleteImage(img)">
+      <!--<ion-button slot="end" fill="clear" (click)="deleteImage(img)">-->
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-button>
+    <ion-textarea></ion-textarea>
+  </ion-item>
+</ion-item>
